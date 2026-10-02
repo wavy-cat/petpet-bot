@@ -9,6 +9,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log"
 	"mime"
 	"mime/multipart"
 	"net/http"
@@ -79,7 +80,8 @@ func discordInteractions(w http.ResponseWriter, r *http.Request) {
 		defer cancel()
 		message, image, filename, contentType, err := petpetService.petpetResponse(ctx, payload, request)
 		if err != nil {
-			writeJSON(w, http.StatusOK, interactionErrorResponse("Unable to create the petpet image.", request.ephemeral))
+			log.Printf("failed to create petpet image: interaction_id=%q subcommand=%q: %v", payload.ID, request.subcommand, err)
+			writeJSON(w, http.StatusOK, interactionErrorResponse("Unable to create the petpet image.", true))
 			return
 		}
 		flags := 0
