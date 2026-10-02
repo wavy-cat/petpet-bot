@@ -1,4 +1,4 @@
-package helloworld
+package main
 
 import (
 	"bytes"
@@ -18,13 +18,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 )
-
-func init() {
-	functions.HTTP("DiscordInteractions", discordInteractions)
-}
 
 func discordInteractions(w http.ResponseWriter, r *http.Request) {
 	cfg := LoadConfig()

@@ -1,4 +1,4 @@
-package helloworld
+package main
 
 import "github.com/ilyakaznacheev/cleanenv"
 
